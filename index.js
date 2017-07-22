@@ -15,10 +15,10 @@ app.get('/', function (request, response) {
 
 app.get('/json', function (request, response) {
   response.json(
-    JSON.stringify({
-      'speech': response,
-      'displayText': response
-    }));
+    {
+      'speech': JSON.stringify(response),
+      'displayText': JSON.stringify(response)
+    });
 });
 
 app.listen(app.get('port'), function () {
