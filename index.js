@@ -13,7 +13,7 @@ app.get('/', function (request, response) {
   response.render('pages/index');
 });
 
-app.get('/json', function (request, response) {
+app.post('/json', function (request, response) {
   response.json({ 'speech': 'sample response from webhook', 'displayText': 'display text sample from webhook' });
 });
 
