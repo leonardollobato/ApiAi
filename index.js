@@ -14,7 +14,7 @@ app.get('/', function (request, response) {
 });
 
 app.get('/json', function (request, response) {
-  response.json({ 'foo': 'bar' });
+  response.json({ 'speech': 'sample response from webhook', 'displayText': 'display text sample from webhook' });
 });
 
 app.listen(app.get('port'), function () {
