@@ -14,11 +14,7 @@ app.get('/', function (request, response) {
 });
 
 app.get('/json', function (request, response) {
-  response.json(
-    {
-      'speech': JSON.stringify(response),
-      'displayText': JSON.stringify(response)
-    });
+  response.json({ 'foo': 'bar' });
 });
 
 app.listen(app.get('port'), function () {
