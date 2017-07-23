@@ -27,12 +27,12 @@ app.post('/json', function (request, response) {
 });
 
 app.post('/tempoWebhook', function (request, response) {
-  console.log({ request: request.body });
-  var city = request.body.result['geo-city'];
+  console.log({ request });
+  var city = request.body.result.parameters['geo-city'];
   var date = '';
 
-  if (request.body.result['date']) {
-    date = request.body.result['date'];
+  if (request.body.result.parameters['date']) {
+    date = request.body.result.parameters['date'];
     console.log('Date: ' + date);
   };
 
