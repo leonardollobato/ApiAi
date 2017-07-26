@@ -27,24 +27,27 @@ app.post('/json', function (request, response) {
 });
 
 app.post('/tempoWebhook', function (request, response) {
-  console.log({ request: request.body.result.parameters });
+  // console.log({ request: request.body.result.parameters });
   var params = request.body.result.parameters;
   // var params = request.body.result.parameters;
   var city = params['geo-city'];
   var date = '';
-  console.log({ city: city });
+  // console.log({ city: city });
 
   if (params['date']) {
     date = params['date'];
-    console.log('Date: ' + date);
+    // console.log('Date: ' + date);
   };
 
   // Call the weather API
   callWeatherApi(city, date).then((output) => {
     // Return the results of the weather API to API.AI
-    response.json(JSON.stringify({ 'speech': output, 'displayText': output }));
+    console.log({ output: output });
+    var r = JSON.stringify({ 'speech': output, 'displayText': output });
+    console.log({ r: r });
+    response.json(r);
   }).catch((error) => {
-    console.log({ error });
+    console.log({ error: error });
     // If there is an error let the user know
     response.json(JSON.stringify({ 'speech': error, 'displayText': error }));
   });
