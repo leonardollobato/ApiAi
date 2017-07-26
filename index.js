@@ -42,10 +42,10 @@ app.post('/tempoWebhook', function (request, response) {
   // Call the weather API
   callWeatherApi(city, date).then((output) => {
     // Return the results of the weather API to API.AI
-    console.log({ output: output });
-    var r = JSON.stringify({ 'speech': output, 'displayText': output });
-    console.log({ r: r });
-    response.json(r);
+    // console.log({ output: output });
+    // var r = JSON.stringify({ 'speech': output, 'displayText': output });
+    // console.log({ r: r });
+    response.json({ 'speech': output, 'displayText': output });
   }).catch((error) => {
     console.log({ error: error });
     // If there is an error let the user know
