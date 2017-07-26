@@ -27,7 +27,7 @@ app.post('/json', function (request, response) {
 });
 
 app.post('/tempoWebhook', function (request, response) {
-  console.log({ request });
+  console.log({ request: request.body.result });
   var params = request.body;
   // var params = request.body.result.parameters;
   var city = params['geo-city'];
