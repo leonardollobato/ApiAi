@@ -63,7 +63,8 @@ function callWeatherApi(city, date) {
         // console.log({ body });
         // After all the data has been received parse the JSON for desired data
         let response = JSON.parse(body);
-
+        console.log({ response });
+        
         if (response) {
           let forecast = response['data']['weather'][0];
           let location = response['data']['request'][0];
@@ -80,7 +81,7 @@ function callWeatherApi(city, date) {
         } else {
           output = 'lugar nao encontrado pela api'
         }
-        
+
         resolve(output);
       });
       res.on('error', (error) => {
