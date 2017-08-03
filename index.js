@@ -57,23 +57,30 @@ function callWeatherApi(city, date) {
     // Make the HTTP request to get the weather
     http.get({ host: host, path: path }, (res) => {
       let body = ''; // var to store the response chunks
+      let output = '';
       res.on('data', (d) => { body += d; }); // store each response chunk
       res.on('end', () => {
         // console.log({ body });
         // After all the data has been received parse the JSON for desired data
         let response = JSON.parse(body);
-        let forecast = response['data']['weather'][0];
-        let location = response['data']['request'][0];
-        let conditions = response['data']['current_condition'][0];
-        let currentConditions = conditions['weatherDesc'][0]['value'];
-        // Create response
-        let output = `Current conditions in the ${location['type']} 
+
+        if (response) {
+          let forecast = response['data']['weather'][0];
+          let location = response['data']['request'][0];
+          let conditions = response['data']['current_condition'][0];
+          let currentConditions = conditions['weatherDesc'][0]['value'];
+          // Create response
+          output = `Current conditions in the ${location['type']} 
         ${location['query']} are ${currentConditions} with a projected high of
         ${forecast['maxtempC']}°C or ${forecast['maxtempF']}°F and a low of 
         ${forecast['mintempC']}°C or ${forecast['mintempF']}°F on 
         ${forecast['date']}.`;
-        // Resolve the promise with the output text
-        // console.log({ output });
+          // Resolve the promise with the output text
+          // console.log({ output });
+        } else {
+          output = 'lugar nao encontrado pela api'
+        }
+        
         resolve(output);
       });
       res.on('error', (error) => {
